@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+
+venv/
+
+.env
+
+corpus/
+corpus_clean/
+chunks/
+cleaning_report.json

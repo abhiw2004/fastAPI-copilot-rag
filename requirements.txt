@@ -1,0 +1,4 @@
+requests
+markdown
+pydantic
+beautifulsoup4
