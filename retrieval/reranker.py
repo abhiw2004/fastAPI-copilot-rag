@@ -27,7 +27,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Literal
 
-from fusion import FusedResult
+from retrieval.fusion import FusedResult
 
 CROSS_ENCODER_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 
@@ -137,8 +137,8 @@ def _print_ranked(results: list[RankedResult], dropped: list[RankedResult] | Non
 if __name__ == "__main__":
     import argparse
 
-    from fusion    import RRFFuser
-    from retriever import DenseRetriever, SparseRetriever
+    from retrieval.fusion    import RRFFuser
+    from retrieval.retriever import DenseRetriever, SparseRetriever
 
     parser = argparse.ArgumentParser()
     parser.add_argument("question")

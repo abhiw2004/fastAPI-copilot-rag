@@ -61,7 +61,7 @@ def run_clean(source_dir: Path, clean_dir: Path, dry_run: bool) -> None:
         print("  [dry-run] skipping.")
         return
 
-    from normalise import clean_html
+    from ingestion.normalise import clean_html
 
     report: dict = {}
     for html_path in html_files:
@@ -97,7 +97,7 @@ def run_chunk(clean_dir: Path, chunks_dir: Path, dry_run: bool) -> None:
         print("  [dry-run] skipping.")
         return
 
-    from chunker import build_chunk_store
+    from ingestion.chunker import build_chunk_store
 
     meta_path = Path("corpus") / "metadata.json"
     metadata: dict | None = None
@@ -126,7 +126,7 @@ def run_index(chunks_dir: Path, index_dir: Path, rebuild: bool, dry_run: bool) -
         print("  [dry-run] skipping.")
         return
 
-    from indexer import build_bm25_index, build_metadata_store, build_vector_index, load_chunks
+    from ingestion.indexer import build_bm25_index, build_metadata_store, build_vector_index, load_chunks
 
     chunks = load_chunks(chunks_file)
 

@@ -24,7 +24,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Literal
 
-from retriever import DEFAULT_K, RetrievalResult
+from retrieval.retriever import DEFAULT_K, RetrievalResult
 
 RRF_K = 60
 
@@ -146,7 +146,7 @@ def _print_fused(results: list[FusedResult], label: str) -> None:
 if __name__ == "__main__":
     import argparse
 
-    from retriever import DenseRetriever, SparseRetriever
+    from retrieval.retriever import DenseRetriever, SparseRetriever
 
     parser = argparse.ArgumentParser()
     parser.add_argument("question")

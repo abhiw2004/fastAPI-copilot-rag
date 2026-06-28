@@ -2,11 +2,6 @@ requests==2.32.3
 markdown==3.7
 pydantic==2.11.5
 beautifulsoup4==4.13.4
-
-# Indexing
 sentence-transformers==3.4.1
 qdrant-client==1.14.3
 rank-bm25==0.2.2
-
-# Reranking (cross-encoder ships inside sentence-transformers, no extra install)
-# Model downloaded on first use: cross-encoder/ms-marco-MiniLM-L-6-v2 (~66 MB)

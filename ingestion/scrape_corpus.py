@@ -57,7 +57,6 @@ PAGES = [
     (f"{BASE}/release-notes/",                           "release_notes", TODAY, "public"),
 ]
 
-# Versioned snapshots used to test stale-doc handling
 OLD_PAGES = [
     ("0.68.0", "advanced/security/oauth2-scopes.md", "outdated", "2021-07-01", "public"),
     ("0.68.0", "advanced/middleware.md",              "outdated", "2021-07-01", "public"),

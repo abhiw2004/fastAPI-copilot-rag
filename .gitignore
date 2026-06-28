@@ -1,14 +1,9 @@
 __pycache__/
 *.pyc
-
 venv/
-
 .env
-
 corpus/
 corpus_clean/
 chunks/
-cleaning_report.json
-
-# Indexes — large binary/data artefacts, rebuilt with indexer.py
 indexes/
+cleaning_report.json
