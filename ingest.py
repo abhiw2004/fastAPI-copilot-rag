@@ -1,5 +1,5 @@
 """
-ingest.py  —  Full pipeline: clean → chunk → index.
+ingest.py  --  Full pipeline: clean, chunk, index.
 
 Usage
 -----
@@ -26,11 +26,11 @@ def _header(text: str) -> None:
 
 
 def _step(text: str) -> None:
-    print(f"\n── {text}")
+    print(f"\n{text}")
 
 
 def _done(text: str) -> None:
-    print(f"  ✓  {text}")
+    print(f"  {text}")
 
 
 def _warn(text: str) -> None:
@@ -48,13 +48,13 @@ def _require_dir(path: Path, label: str) -> None:
 
 
 def run_clean(source_dir: Path, clean_dir: Path, dry_run: bool) -> None:
-    _step("Stage 1 — Clean")
+    _step("Stage 1 -- Clean")
 
     html_files = sorted(source_dir.rglob("*.html"))
     if not html_files:
         _abort(f"No .html files found under {source_dir}")
 
-    print(f"  source  : {source_dir}  ({len(html_files)} HTML files)")
+    print(f"  source  : {source_dir}  ({len(html_files)} files)")
     print(f"  dest    : {clean_dir}")
 
     if dry_run:
@@ -75,22 +75,22 @@ def run_clean(source_dir: Path, clean_dir: Path, dry_run: bool) -> None:
 
         flag = ""
         if stats["raw_char_count"] > 0 and stats["kept_ratio"] < 0.05:
-            flag = "  ← low kept ratio"
+            flag = "  [low kept ratio]"
         elif stats["selector_used"] == "fallback_body" and stats["raw_char_count"] > 3000:
-            flag = "  ← fallback on large page"
+            flag = "  [fallback on large page]"
         print(f"    {str(rel):<55s}  {stats['selector_used']:<20s}  {stats['kept_ratio']:.0%}{flag}")
 
     report_path = Path("cleaning_report.json")
     report_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
-    _done(f"{len(html_files)} files cleaned  →  {clean_dir}/")
-    _done(f"report  →  {report_path}")
+    _done(f"{len(html_files)} files cleaned -> {clean_dir}/")
+    _done(f"report -> {report_path}")
 
 
 def run_chunk(clean_dir: Path, chunks_dir: Path, dry_run: bool) -> None:
-    _step("Stage 2 — Chunk")
+    _step("Stage 2 -- Chunk")
 
     html_files = list(clean_dir.rglob("*.html"))
-    print(f"  source  : {clean_dir}  ({len(html_files)} HTML files)")
+    print(f"  source  : {clean_dir}  ({len(html_files)} files)")
     print(f"  dest    : {chunks_dir}")
 
     if dry_run:
@@ -105,14 +105,14 @@ def run_chunk(clean_dir: Path, chunks_dir: Path, dry_run: bool) -> None:
         metadata = json.loads(meta_path.read_text(encoding="utf-8"))
         print(f"  metadata: {meta_path}  ({len(metadata)} entries)")
     else:
-        _warn(f"No metadata.json at {meta_path} — chunk metadata fields will be empty.")
+        _warn(f"No metadata.json at {meta_path} -- chunk metadata fields will be empty.")
 
     stats = build_chunk_store(clean_dir=clean_dir, output_dir=chunks_dir, metadata=metadata)
-    _done(f"{stats['combined_total']:,} chunks written  →  {chunks_dir}/")
+    _done(f"{stats['combined_total']:,} chunks written -> {chunks_dir}/")
 
 
 def run_index(chunks_dir: Path, index_dir: Path, rebuild: bool, dry_run: bool) -> None:
-    _step("Stage 3 — Index")
+    _step("Stage 3 -- Index")
 
     chunks_file = chunks_dir / "chunks_all.jsonl"
     if not chunks_file.exists():
@@ -134,7 +134,7 @@ def run_index(chunks_dir: Path, index_dir: Path, rebuild: bool, dry_run: bool) -
     meta_out = index_dir / "metadata.json"
     store    = build_metadata_store(chunks)
     meta_out.write_text(json.dumps(store, indent=2, ensure_ascii=False), encoding="utf-8")
-    _done(f"{len(store):,} metadata records  →  {meta_out}")
+    _done(f"{len(store):,} metadata records -> {meta_out}")
 
     build_vector_index(chunks, index_dir / "qdrant", reset=rebuild)
     build_bm25_index(chunks, index_dir / "bm25.pkl")
@@ -145,7 +145,7 @@ def parse_args() -> argparse.Namespace:
         prog="ingest",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description=textwrap.dedent("""\
-            Full pipeline: clean → chunk → index.
+            Full pipeline: clean, chunk, index.
 
             Examples
             --------
@@ -207,13 +207,13 @@ def main() -> None:
     elapsed = time.monotonic() - t0
 
     _header("INGEST COMPLETE" + ("  [dry-run]" if args.dry_run else ""))
-    print(f"  source dir     : {source_dir}")
-    print(f"  clean dir      : {clean_dir}")
-    print(f"  chunks dir     : {chunks_dir}")
-    print(f"  index dir      : {index_dir}")
+    print(f"  source dir  : {source_dir}")
+    print(f"  clean dir   : {clean_dir}")
+    print(f"  chunks dir  : {chunks_dir}")
+    print(f"  index dir   : {index_dir}")
     if skipped:
-        print(f"  skipped        : {', '.join(skipped)}")
-    print(f"  elapsed        : {elapsed:.1f}s")
+        print(f"  skipped     : {', '.join(skipped)}")
+    print(f"  elapsed     : {elapsed:.1f}s")
 
 
 if __name__ == "__main__":

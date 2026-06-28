@@ -1,5 +1,5 @@
 """
-indexer.py  —  Build the Qdrant vector index and BM25 index from a chunk JSONL.
+indexer.py  --  Build the Qdrant vector index and BM25 index from a chunk JSONL.
 
 Outputs
 -------
@@ -81,14 +81,14 @@ def build_vector_index(chunks: list[dict], qdrant_dir: Path, reset: bool = False
         print("Run:  pip install qdrant-client sentence-transformers")
         sys.exit(1)
 
-    print("\n── Vector index (Qdrant) ─────────────────────────────────")
+    print("\nVector index")
 
     qdrant_dir.mkdir(parents=True, exist_ok=True)
     client   = QdrantClient(path=str(qdrant_dir))
     existing = [c.name for c in client.get_collections().collections]
 
     if reset and COLLECTION_NAME in existing:
-        print(f"  reset=True  →  deleting collection '{COLLECTION_NAME}'")
+        print(f"  Deleting collection '{COLLECTION_NAME}'")
         client.delete_collection(COLLECTION_NAME)
         existing = []
 
@@ -99,9 +99,9 @@ def build_vector_index(chunks: list[dict], qdrant_dir: Path, reset: bool = False
         )
         print(f"  Created collection '{COLLECTION_NAME}'")
     else:
-        print(f"  Reusing existing collection '{COLLECTION_NAME}'")
+        print(f"  Reusing collection '{COLLECTION_NAME}'")
 
-    print(f"  Loading embedding model: {EMBED_MODEL}")
+    print(f"  Loading {EMBED_MODEL}")
     model = SentenceTransformer(EMBED_MODEL)
 
     texts     = [c["text"]     for c in chunks]
@@ -109,7 +109,7 @@ def build_vector_index(chunks: list[dict], qdrant_dir: Path, reset: bool = False
     total     = len(chunks)
     id_to_int = {cid: i for i, cid in enumerate(ids)}
 
-    print(f"  Embedding {total:,} chunks in batches of {EMBED_BATCH_SIZE} …")
+    print(f"  Embedding {total:,} chunks ...")
     all_vectors: list[list[float]] = []
     for start in range(0, total, EMBED_BATCH_SIZE):
         vecs = model.encode(
@@ -120,10 +120,10 @@ def build_vector_index(chunks: list[dict], qdrant_dir: Path, reset: bool = False
         )
         all_vectors.extend(vecs.tolist())
         done = min(start + EMBED_BATCH_SIZE, total)
-        print(f"    embedded {done:>5,}/{total:,}  ({done/total*100:.1f}%)", end="\r")
+        print(f"    {done:>5,}/{total:,}  ({done/total*100:.1f}%)", end="\r")
     print()
 
-    print("  Upserting into Qdrant …")
+    print("  Upserting ...")
     for start in range(0, total, UPSERT_BATCH):
         sl     = slice(start, start + UPSERT_BATCH)
         points = [
@@ -131,25 +131,25 @@ def build_vector_index(chunks: list[dict], qdrant_dir: Path, reset: bool = False
                 id=id_to_int[cid],
                 vector=vec,
                 payload={
-                    "chunk_id":    cid,
-                    "text":        texts[i],
-                    "source_url":  chunks[i]["source_url"],
-                    "doc_type":    chunks[i]["doc_type"],
-                    "strategy":    chunks[i]["strategy"],
-                    "section":     chunks[i].get("section", ""),
-                    "section_path":chunks[i].get("section_path", ""),
-                    "char_count":  chunks[i]["char_count"],
+                    "chunk_id":     cid,
+                    "text":         texts[i],
+                    "source_url":   chunks[i]["source_url"],
+                    "doc_type":     chunks[i]["doc_type"],
+                    "strategy":     chunks[i]["strategy"],
+                    "section":      chunks[i].get("section", ""),
+                    "section_path": chunks[i].get("section_path", ""),
+                    "char_count":   chunks[i]["char_count"],
                 },
             )
             for i, (cid, vec) in enumerate(zip(ids[sl], all_vectors[sl]), start=start)
         ]
         client.upsert(collection_name=COLLECTION_NAME, points=points, wait=True)
         done = min(start + UPSERT_BATCH, total)
-        print(f"    upserted {done:>5,}/{total:,}", end="\r")
+        print(f"    {done:>5,}/{total:,}", end="\r")
     print()
 
     count = client.get_collection(COLLECTION_NAME).points_count
-    print(f"  ✓  Collection '{COLLECTION_NAME}' holds {count:,} vectors  →  {qdrant_dir}")
+    print(f"  {count:,} vectors -> {qdrant_dir}")
 
 
 def _tokenise(text: str) -> list[str]:
@@ -163,13 +163,13 @@ def build_bm25_index(chunks: list[dict], bm25_path: Path) -> None:
         print("\n[ERROR] rank-bm25 not installed.  Run:  pip install rank-bm25")
         sys.exit(1)
 
-    print("\n── BM25 index ────────────────────────────────────────────")
-    print(f"  Tokenising {len(chunks):,} chunks …")
+    print("\nBM25 index")
+    print(f"  Tokenising {len(chunks):,} chunks ...")
 
     ids    = [c["chunk_id"] for c in chunks]
     corpus = [_tokenise(c["text"]) for c in chunks]
 
-    print("  Building BM25Okapi index …")
+    print("  Building index ...")
     index = BM25Okapi(corpus)
 
     bm25_path.parent.mkdir(parents=True, exist_ok=True)
@@ -178,12 +178,12 @@ def build_bm25_index(chunks: list[dict], bm25_path: Path) -> None:
                     protocol=pickle.HIGHEST_PROTOCOL)
 
     size_kb = bm25_path.stat().st_size / 1024
-    print(f"  ✓  BM25 index saved  →  {bm25_path}  ({size_kb:.0f} KB)")
+    print(f"  {size_kb:.0f} KB -> {bm25_path}")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Build Qdrant vector + BM25 indexes for the FastAPI RAG copilot."
+        description="Build Qdrant vector + BM25 indexes."
     )
     parser.add_argument("--chunks",      default=str(CHUNKS_PATH))
     parser.add_argument("--index-dir",   default=str(INDEX_DIR))
@@ -202,13 +202,13 @@ def main() -> None:
 
     chunks = load_chunks(chunks_path)
 
-    print("\n── Metadata store ────────────────────────────────────────")
+    print("\nMetadata store")
     index_dir.mkdir(parents=True, exist_ok=True)
     meta_store = build_metadata_store(chunks)
     meta_path.write_text(
         json.dumps(meta_store, indent=2, ensure_ascii=False), encoding="utf-8"
     )
-    print(f"  ✓  {len(meta_store):,} records  →  {meta_path}")
+    print(f"  {len(meta_store):,} records -> {meta_path}")
 
     if not args.bm25_only:
         build_vector_index(chunks, index_dir / "qdrant", reset=args.reset)
@@ -219,10 +219,10 @@ def main() -> None:
     print("\n" + "=" * 58)
     print("INDEX BUILD COMPLETE")
     print("=" * 58)
-    print(f"  Chunks indexed : {len(chunks):,}")
-    print(f"  Vector store   : {index_dir / 'qdrant'}")
-    print(f"  BM25 index     : {index_dir / 'bm25.pkl'}")
-    print(f"  Metadata store : {meta_path}")
+    print(f"  chunks   : {len(chunks):,}")
+    print(f"  vectors  : {index_dir / 'qdrant'}")
+    print(f"  bm25     : {index_dir / 'bm25.pkl'}")
+    print(f"  metadata : {meta_path}")
     print("=" * 58)
 
 
