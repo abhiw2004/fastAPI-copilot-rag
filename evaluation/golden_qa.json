@@ -1,0 +1,552 @@
+[
+  {
+    "id": 1,
+    "question": "How do I create a basic GET endpoint in FastAPI?",
+    "category": "simple_lookup",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 2,
+    "question": "What is the default port when running a FastAPI app with uvicorn?",
+    "category": "simple_lookup",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 3,
+    "question": "How do I define path parameters in FastAPI?",
+    "category": "simple_lookup",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 4,
+    "question": "How do I make a query parameter optional?",
+    "category": "simple_lookup",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 5,
+    "question": "How do I validate a query parameter's minimum length?",
+    "category": "simple_lookup",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 6,
+    "question": "How do I declare a request body using Pydantic?",
+    "category": "simple_lookup",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 7,
+    "question": "How do I return a custom HTTP status code from an endpoint?",
+    "category": "simple_lookup",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 8,
+    "question": "What is HTTPException and how do I use it?",
+    "category": "simple_lookup",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 9,
+    "question": "How do I add custom headers to an HTTPException response?",
+    "category": "simple_lookup",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 10,
+    "question": "How do I define response_model on a path operation?",
+    "category": "simple_lookup",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 11,
+    "question": "How do I read custom headers from an incoming request?",
+    "category": "simple_lookup",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 12,
+    "question": "How does dependency injection work in FastAPI?",
+    "category": "simple_lookup",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 13,
+    "question": "What are sub-dependencies and how do I chain them?",
+    "category": "simple_lookup",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 14,
+    "question": "How do I add CORS middleware to my FastAPI app?",
+    "category": "simple_lookup",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 15,
+    "question": "How do I run background tasks after returning a response?",
+    "category": "simple_lookup",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 16,
+    "question": "How do I structure a larger FastAPI application with multiple files?",
+    "category": "simple_lookup",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 17,
+    "question": "How do I write tests for FastAPI endpoints?",
+    "category": "simple_lookup",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 18,
+    "question": "How do I debug a FastAPI application in VS Code?",
+    "category": "simple_lookup",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 19,
+    "question": "How do I implement OAuth2 with password flow and JWT tokens?",
+    "category": "multidoc",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 20,
+    "question": "What is the difference between FastAPI's OAuth2PasswordBearer and OAuth2PasswordRequestForm?",
+    "category": "multidoc",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 21,
+    "question": "How do I add OAuth2 scopes to protect different endpoints with different permissions?",
+    "category": "multidoc",
+    "expected_doc_type": "advanced",
+    "has_answer": true
+  },
+  {
+    "id": 22,
+    "question": "How do I combine dependency injection with OAuth2 security to get the current user?",
+    "category": "multidoc",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 23,
+    "question": "How do I configure HTTPS with a reverse proxy and set root_path correctly?",
+    "category": "multidoc",
+    "expected_doc_type": "deployment",
+    "has_answer": true
+  },
+  {
+    "id": 24,
+    "question": "How do I deploy a FastAPI app with Docker using a multi-stage build?",
+    "category": "multidoc",
+    "expected_doc_type": "deployment",
+    "has_answer": true
+  },
+  {
+    "id": 25,
+    "question": "How do I override dependencies in tests to mock database connections?",
+    "category": "multidoc",
+    "expected_doc_type": "advanced",
+    "has_answer": true
+  },
+  {
+    "id": 26,
+    "question": "How do I use middleware to add processing time headers and also handle CORS?",
+    "category": "multidoc",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 27,
+    "question": "How do I return different response models for different status codes on the same endpoint?",
+    "category": "multidoc",
+    "expected_doc_type": "advanced",
+    "has_answer": true
+  },
+  {
+    "id": 28,
+    "question": "How do I use SQL databases with FastAPI and handle session lifecycle?",
+    "category": "multidoc",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 29,
+    "question": "How do I implement WebSocket endpoints in FastAPI?",
+    "category": "simple_lookup",
+    "expected_doc_type": "advanced",
+    "has_answer": true
+  },
+  {
+    "id": 30,
+    "question": "How do I use environment variables and .env files for configuration?",
+    "category": "simple_lookup",
+    "expected_doc_type": "advanced",
+    "has_answer": true
+  },
+  {
+    "id": 31,
+    "question": "What is the recommended way to handle settings in FastAPI?",
+    "category": "simple_lookup",
+    "expected_doc_type": "advanced",
+    "has_answer": true
+  },
+  {
+    "id": 32,
+    "question": "How do I implement HTTP Basic Auth in FastAPI?",
+    "category": "simple_lookup",
+    "expected_doc_type": "advanced",
+    "has_answer": true
+  },
+  {
+    "id": 33,
+    "question": "How do I return a streaming response or a file download?",
+    "category": "simple_lookup",
+    "expected_doc_type": "advanced",
+    "has_answer": true
+  },
+  {
+    "id": 34,
+    "question": "How do I integrate GraphQL with FastAPI?",
+    "category": "simple_lookup",
+    "expected_doc_type": "how_to",
+    "has_answer": true
+  },
+  {
+    "id": 35,
+    "question": "What are the deployment concepts I should understand before going to production?",
+    "category": "simple_lookup",
+    "expected_doc_type": "deployment",
+    "has_answer": true
+  },
+  {
+    "id": 36,
+    "question": "How do I set up TLS termination for FastAPI?",
+    "category": "simple_lookup",
+    "expected_doc_type": "deployment",
+    "has_answer": true
+  },
+  {
+    "id": 37,
+    "question": "How do I use multiple body parameters in a single endpoint?",
+    "category": "simple_lookup",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 38,
+    "question": "What changed between FastAPI 0.68.0 and the current version regarding SQL database handling?",
+    "category": "outdated_trap",
+    "expected_doc_type": "outdated",
+    "has_answer": true,
+    "notes": "Should prefer current docs over v0.68.0 content"
+  },
+  {
+    "id": 39,
+    "question": "How do I use SessionLocal and create_engine with SQLAlchemy in FastAPI?",
+    "category": "outdated_trap",
+    "expected_doc_type": "tutorial",
+    "has_answer": true,
+    "notes": "Old v0.68 pattern uses SessionLocal; current docs may differ"
+  },
+  {
+    "id": 40,
+    "question": "Does FastAPI still recommend using passlib for password hashing?",
+    "category": "outdated_trap",
+    "expected_doc_type": "tutorial",
+    "has_answer": true,
+    "notes": "Release notes mention switch to pwdlib with Argon2"
+  },
+  {
+    "id": 41,
+    "question": "How did background task dependency injection work in FastAPI 0.68.0?",
+    "category": "outdated_trap",
+    "expected_doc_type": "outdated",
+    "has_answer": true,
+    "notes": "Should note this is outdated content"
+  },
+  {
+    "id": 42,
+    "question": "What middleware was recommended in the old FastAPI docs before the advanced middleware page was updated?",
+    "category": "outdated_trap",
+    "expected_doc_type": "outdated",
+    "has_answer": true,
+    "notes": "v0.68.0 middleware doc vs current"
+  },
+  {
+    "id": 43,
+    "question": "How do I use python-jose for JWT tokens in FastAPI?",
+    "category": "outdated_trap",
+    "expected_doc_type": "outdated",
+    "has_answer": true,
+    "notes": "python-jose appears in old docs; current may recommend different lib"
+  },
+  {
+    "id": 44,
+    "question": "How do I handle authentication?",
+    "category": "ambiguous",
+    "expected_doc_type": null,
+    "has_answer": true,
+    "notes": "Could mean OAuth2, Basic Auth, API keys, or JWT -- multiple docs apply"
+  },
+  {
+    "id": 45,
+    "question": "What is the best way to do it?",
+    "category": "ambiguous",
+    "expected_doc_type": null,
+    "has_answer": false,
+    "notes": "No referent for 'it' -- system should ask for clarification or refuse"
+  },
+  {
+    "id": 46,
+    "question": "How do I add middleware?",
+    "category": "ambiguous",
+    "expected_doc_type": null,
+    "has_answer": true,
+    "notes": "Could mean CORS, custom middleware, Starlette middleware -- multiple docs"
+  },
+  {
+    "id": 47,
+    "question": "How do I secure my API?",
+    "category": "ambiguous",
+    "expected_doc_type": null,
+    "has_answer": true,
+    "notes": "Multiple security approaches across tutorial and advanced docs"
+  },
+  {
+    "id": 48,
+    "question": "How do I handle errors properly?",
+    "category": "ambiguous",
+    "expected_doc_type": null,
+    "has_answer": true,
+    "notes": "HTTPException, custom handlers, validation errors all apply"
+  },
+  {
+    "id": 49,
+    "question": "How do I deploy FastAPI on AWS Lambda?",
+    "category": "no_answer",
+    "expected_doc_type": null,
+    "has_answer": false,
+    "notes": "AWS Lambda deployment not covered in the corpus"
+  },
+  {
+    "id": 50,
+    "question": "How do I use Celery with FastAPI for distributed task queues?",
+    "category": "no_answer",
+    "expected_doc_type": null,
+    "has_answer": false,
+    "notes": "Celery integration not in the scraped docs"
+  },
+  {
+    "id": 51,
+    "question": "How do I add rate limiting to FastAPI endpoints?",
+    "category": "no_answer",
+    "expected_doc_type": null,
+    "has_answer": false,
+    "notes": "Rate limiting not covered in the corpus"
+  },
+  {
+    "id": 52,
+    "question": "How do I set up FastAPI with MongoDB?",
+    "category": "no_answer",
+    "expected_doc_type": null,
+    "has_answer": false,
+    "notes": "Only SQL databases are covered"
+  },
+  {
+    "id": 53,
+    "question": "How do I implement server-sent events (SSE) in FastAPI?",
+    "category": "no_answer",
+    "expected_doc_type": null,
+    "has_answer": false,
+    "notes": "SSE not in the scraped pages"
+  },
+  {
+    "id": 54,
+    "question": "How do I use FastAPI with Redis for caching?",
+    "category": "no_answer",
+    "expected_doc_type": null,
+    "has_answer": false,
+    "notes": "Redis caching not covered"
+  },
+  {
+    "id": 55,
+    "question": "How do I implement pagination for list endpoints?",
+    "category": "no_answer",
+    "expected_doc_type": null,
+    "has_answer": false,
+    "notes": "No pagination tutorial in the corpus"
+  },
+  {
+    "id": 56,
+    "question": "How do I add OpenTelemetry tracing to FastAPI?",
+    "category": "no_answer",
+    "expected_doc_type": null,
+    "has_answer": false,
+    "notes": "Observability/tracing not in scraped docs"
+  },
+  {
+    "id": 57,
+    "question": "How do I upload files in FastAPI?",
+    "category": "no_answer",
+    "expected_doc_type": null,
+    "has_answer": false,
+    "notes": "File upload tutorial page was not scraped"
+  },
+  {
+    "id": 58,
+    "question": "What is the difference between APIRouter and FastAPI app?",
+    "category": "multidoc",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 59,
+    "question": "How do I use Depends() and what happens when I nest dependencies three levels deep?",
+    "category": "multidoc",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 60,
+    "question": "What parameters does the FastAPI class constructor accept?",
+    "category": "simple_lookup",
+    "expected_doc_type": "reference",
+    "has_answer": true
+  },
+  {
+    "id": 61,
+    "question": "What are all the parameters available in the Query() function?",
+    "category": "simple_lookup",
+    "expected_doc_type": "reference",
+    "has_answer": true
+  },
+  {
+    "id": 62,
+    "question": "How do I set up SecurityScopes and what does it provide at runtime?",
+    "category": "multidoc",
+    "expected_doc_type": "advanced",
+    "has_answer": true
+  },
+  {
+    "id": 63,
+    "question": "How do I use TestClient to test WebSocket endpoints?",
+    "category": "multidoc",
+    "expected_doc_type": "advanced",
+    "has_answer": true
+  },
+  {
+    "id": 64,
+    "question": "What is the relationship between Starlette and FastAPI?",
+    "category": "ambiguous",
+    "expected_doc_type": null,
+    "has_answer": true,
+    "notes": "Mentioned across multiple docs but no single dedicated page"
+  },
+  {
+    "id": 65,
+    "question": "How do I customize the OpenAPI schema that FastAPI generates?",
+    "category": "simple_lookup",
+    "expected_doc_type": "advanced",
+    "has_answer": true
+  },
+  {
+    "id": 66,
+    "question": "How do I return an HTML response instead of JSON?",
+    "category": "simple_lookup",
+    "expected_doc_type": "advanced",
+    "has_answer": true
+  },
+  {
+    "id": 67,
+    "question": "How do I use Kubernetes to deploy FastAPI at scale?",
+    "category": "no_answer",
+    "expected_doc_type": null,
+    "has_answer": false,
+    "notes": "Kubernetes not mentioned in corpus"
+  },
+  {
+    "id": 68,
+    "question": "How do I integrate Alembic migrations with FastAPI and SQLAlchemy?",
+    "category": "no_answer",
+    "expected_doc_type": null,
+    "has_answer": false,
+    "notes": "Alembic not covered in scraped docs"
+  },
+  {
+    "id": 69,
+    "question": "How do I validate path parameter values using an Enum?",
+    "category": "simple_lookup",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 70,
+    "question": "How do I run FastAPI behind Traefik as a reverse proxy?",
+    "category": "simple_lookup",
+    "expected_doc_type": "advanced",
+    "has_answer": true
+  },
+  {
+    "id": 71,
+    "question": "What happens if I raise an HTTPException inside a dependency?",
+    "category": "multidoc",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 72,
+    "question": "How do I use both path parameters and request body in the same endpoint?",
+    "category": "multidoc",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  },
+  {
+    "id": 73,
+    "question": "Should I use passlib or pwdlib for password hashing in 2024?",
+    "category": "outdated_trap",
+    "expected_doc_type": "release_notes",
+    "has_answer": true,
+    "notes": "Release notes document the switch from passlib to pwdlib"
+  },
+  {
+    "id": 74,
+    "question": "How do I configure a lifespan event handler in FastAPI?",
+    "category": "no_answer",
+    "expected_doc_type": null,
+    "has_answer": false,
+    "notes": "Lifespan events page was not scraped"
+  },
+  {
+    "id": 75,
+    "question": "How do I add request validation error handlers that return custom error formats?",
+    "category": "multidoc",
+    "expected_doc_type": "tutorial",
+    "has_answer": true
+  }
+]

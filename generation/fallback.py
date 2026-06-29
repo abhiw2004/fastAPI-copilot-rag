@@ -7,7 +7,7 @@ from __future__ import annotations
 from contract import AnswerResponse, ConfidenceBreakdown
 from retrieval.reranker import RankedResult
 
-RETRIEVAL_THRESHOLD = 0.55
+RETRIEVAL_THRESHOLD = 0.45
 
 
 def should_fallback(retrieval_score: float) -> bool:

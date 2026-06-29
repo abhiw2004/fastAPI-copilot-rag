@@ -7,3 +7,5 @@ corpus_clean/
 chunks/
 indexes/
 cleaning_report.json
+evaluation/report.md
+evaluation/report.json
